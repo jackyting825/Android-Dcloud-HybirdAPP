@@ -1,0 +1,11 @@
+# 如何在 vue 文件中正确的使用 alloyimage
+
+1. 务必将 `alloyimage` 文件资源 先于调用方法前进行载入
+2. 在调用alloyImage 方法前 要确保图像已经载入完成,否则会出现预期外的异常
+3. `postMessage` 报错信息并不影响实际使用,可以去除也可不去除
+
+### 备注
+
+1. alloyimage.js 为原始源码, 修改了少量源码,屏蔽了 `postMessage` 初始化时报错
+2. alloyimage.min.js 为暂时屏蔽报错信息的压缩版本
+
