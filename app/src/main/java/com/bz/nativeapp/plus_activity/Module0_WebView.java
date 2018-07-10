@@ -150,8 +150,10 @@ class WebviewModule0Listener implements ICoreStatusListener {
         webview = SDK.createWebview(activity, url, appid, new IWebviewStateListener() {
             @Override
             public Object onCallBack(int pType, Object pArgs) {
+                Log.i("5plus", pArgs.toString());
                 switch (pType) {
                     case IWebviewStateListener.ON_WEBVIEW_READY:
+                        Log.i("5plus", "ON_WEBVIEW_READY");
                         // 准备完毕之后添加webview到显示父View中，设置排版不显示状态，避免显示webview时，html内容排版错乱问题
                         ((IWebview) pArgs).obtainFrameView().obtainMainView().setVisibility(View.INVISIBLE);
                         SDK.attach(mRootView, ((IWebview) pArgs));
@@ -161,25 +163,42 @@ class WebviewModule0Listener implements ICoreStatusListener {
                         mRootView.addView(splashView);
                         break;
                     case IWebviewStateListener.ON_PAGE_STARTED:
+                        Log.i("5plus", "ON_PAGE_STARTED");
                         // 首页面开始加载事件
                         break;
                     case IWebviewStateListener.ON_PROGRESS_CHANGED:
+                        Log.i("5plus", "ON_PROGRESS_CHANGED");
+                        Log.i("5plus", pArgs.toString());
+                        Log.i("5plus", "----------");
                         // 首页面加载进度变化
                         break;
+                    case IWebviewStateListener.ON_RECEIVED_ERROR:
+                        Log.i("5plus", "ON_RECEIVED_ERROR");
+                        break;
+                    case IWebviewStateListener.ON_RECEIVED_TITLE:
+                        Log.i("5plus", "ON_RECEIVED_TITLE");
+                        break;
                     case IWebviewStateListener.ON_PAGE_FINISHED:
+                        Log.i("5plus", "ON_PAGE_FINISHED");
                         // 页面加载完毕，设置显示webview
                         webview.obtainFrameView().obtainMainView().setVisibility(View.VISIBLE);
                         break;
                     case IWebviewStateListener.ON_WEBVIEW_RENDERING:
-                        Log.d("TAG", "ON_WEBVIEW_RENDERING");
-                        //关闭load图
-                        mRootView.removeView(splashView);
+                        Log.d("5plus", "ON_WEBVIEW_RENDERING");
+                        // 关闭load图
+                        // mRootView.removeView(splashView);
                         break;
                     case IWebviewStateListener.ON_LOAD_RESOURCE:
-                        Log.d("TAG", "ON_LOAD_RESOURCE");
-                        //关闭load图
-                        mRootView.removeView(splashView);
+                        Log.d("5plus", "ON_LOAD_RESOURCE");
+                        // 关闭load图
+                        // mRootView.removeView(splashView);
                         break;
+                    default:
+                        break;
+                }
+                if ("100".equals(pArgs.toString())) {
+                    // 关闭load图
+                    mRootView.removeView(splashView);
                 }
                 return null;
             }
