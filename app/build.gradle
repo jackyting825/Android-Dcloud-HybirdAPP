@@ -16,12 +16,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
 
-repositories {
-    flatDir {
-        dirs 'libs' //自己项目的libs对应目录
+    // 使用aar库
+    repositories {
+        flatDir {
+            dirs 'libs' //自己项目的libs对应目录
+        }
     }
+
 }
 
 dependencies {
