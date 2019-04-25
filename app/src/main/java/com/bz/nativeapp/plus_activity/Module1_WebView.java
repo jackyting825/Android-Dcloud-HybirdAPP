@@ -145,10 +145,10 @@ class WebviewModule1Listener implements ICore.ICoreStatusListener {
     @Override
     public void onCoreInitEnd(ICore coreHandler) {
         // 设置单页面集成的appid
-        String appid = "5plus1";
+        String appid = "5plus";
         // 单页面集成时要加载页面的路径，可以是本地文件路径也可以是网络路径
-        String url = "file:///android_asset/apps/5plus1/www/modules/vuex.html";
-        webview = SDK.createWebview(activity, url, appid, new IWebviewStateListener() {
+        String url = "file:///android_asset/apps/5plus/www/modules/vuex.html";
+        webview = SDK.createWebview(activity, url, apgitpid, new IWebviewStateListener() {
             @Override
             public Object onCallBack(int pType, Object pArgs) {
                 Log.i("5plus", pArgs.toString());

@@ -31,6 +31,8 @@ repositories {
 
 5.在src/main/目录下新建assets目录,在该目录下新建apps/模块名/www结构的目录,然后将manifest.json文件复制到对应模块的www文件夹下,并把通过H5+编译后的html,js,image等文件拷贝到对应模块的www目录下.然后修改json文件中的id,name,launch_path节点的值为对应的模块名(appid),和对应执行的html文件路径.
 
+    注:之前旧版本是需要对不同模块进行建立不同名称的目录,然后修改对应json文件配置.但是经测试,在当前版本(项目中使用的sdk版本以上),其实不需要建立多个模块的目录的,只需要建立一个目录即可,将打包好的html5+文件放进去,然后在不同的webviewActivity中修改加载各自的页面路径即可
+
 6.将SDK目录下面的data(含有dcloud_control.xml,dcloud_error.xml,dcloud_properties.xml)文件夹拷贝到assets目录下.修改对应的dcloud_control.xml中的appid值(可改为项目名).dcloud_properties.xml文件定义了一些dcloud封装好的插件类库
 
 7.把SDK目录下的io.dcloud.RInformation.java按照io.dcloud的包名(包名必须为io.dcloud)放到项目下,编写对应的webview的activity类.详情见项目的plus_activity包下(主要修改对应模块的appid(模块名)和加载页面路径).然后在对应的原生activity中启动该activity即可
