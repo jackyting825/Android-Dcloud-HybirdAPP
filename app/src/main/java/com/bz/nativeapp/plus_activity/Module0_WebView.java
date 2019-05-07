@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -99,6 +100,8 @@ public class Module0_WebView extends Activity {
     }
 
     public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.fontScale != 1)//非默认值
+            getResources();
         try {
             int temp = this.getResources().getConfiguration().orientation;
             if (mEntryProxy != null) {
@@ -108,6 +111,18 @@ public class Module0_WebView extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // 系统字体变大导致的布局异常
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res.getConfiguration().fontScale != 1) {//非默认值
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
